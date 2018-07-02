@@ -1,0 +1,36 @@
+group 'com.com.peng.com'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    selenium
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'io.cucumber', name: 'cucumber-java8', version: '3.0.2'
+    testCompile group: 'io.cucumber', name: 'cucumber-junit', version: '3.0.2'
+    testCompile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.13.0'
+    testCompile group: 'org.yaml', name: 'snakeyaml', version: '1.21'
+    testCompile group: 'commons-lang', name: 'commons-lang', version: '2.6'
+
+
+}
+
+task runFirstTime(type: Test) {
+    ignoreFailures = true
+    exclude 'com/peng/features/FeatureRerun*'
+}
+
+test {
+    include 'com/peng/features/FeatureRerun*'
+}
+
+test.dependsOn ":runFirstTime"
