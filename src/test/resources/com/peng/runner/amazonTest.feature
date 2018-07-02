@@ -1,5 +1,5 @@
 @test
-Feature: Search in Google
+Feature: Sign up an Amazon account
 
   Background:
     Given user lands on "amazon" home page
@@ -17,11 +17,6 @@ Feature: Search in Google
 #    Then user should see "Email address already in use" on the page
 
     Examples:
-      | name      | email             | password  | re-password
-      | peng chen1 | chenpeng1@test.com | password1 | password1
-      | peng chen2 | chenpeng2@test.com | password1 | password1
-      | peng chen3 | chenpeng3@test.com | password1 | password1
-      | peng chen4 | chenpeng4@test.com | password1 | password1
-      | peng chen5 | chenpeng5@test.com | password1 | password1
-      | peng chen6 | chenpeng6@test.com | password1 | password1
-      | peng chen7 | chenpeng7@test.com | password1 | password1
+      | name      | email             | password  | re-password |
+      | peng chen1 | chenpeng1@test.com | password1 | password1 |
+      | peng chen2 | chenpeng2@test.com | password1 | password1 |

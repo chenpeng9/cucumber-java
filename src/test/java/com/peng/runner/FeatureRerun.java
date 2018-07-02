@@ -1,4 +1,4 @@
-package com.peng.features;
+package com.peng.runner;
 
 
 import cucumber.api.CucumberOptions;
@@ -8,12 +8,12 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         glue = {"com.peng.steps"},
-        tags = {"@test"},
+        features = "@target/rerun.txt",
         plugin = {"pretty",
         "html:target/cucumber-reports",
         "json:target/cucumber.json",
         "rerun:target/rerun.txt" }
 )
-public class FeatureTest {
+public class FeatureRerun {
 
 }
