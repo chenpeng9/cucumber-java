@@ -2,7 +2,6 @@ package com.peng.steps;
 
 import com.peng.functions.DriverFactory;
 import com.peng.functions.EnvironmentContext;
-import com.peng.functions.PageData;
 import com.peng.functions.PageFileParser;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -13,15 +12,16 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by PeChen on 3/14/17.
  */
 public class MyStepdefs {
-    WebDriver driver = new DriverFactory().getDriver();
-    EnvironmentContext environmentContext = new EnvironmentContext();
-    PageData page = new PageFileParser();
+    private WebDriver driver = new DriverFactory().getDriver();
+    private EnvironmentContext environmentContext = new EnvironmentContext();
+    private PageFileParser page = new PageFileParser();
 
     @When("^user inputs \"([^\"]*)\" in the field \"([^\"]*)\"$")
     public void userInputsInTheField(String keyword, String field) throws Throwable {

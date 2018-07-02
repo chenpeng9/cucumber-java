@@ -14,8 +14,8 @@ import static junit.framework.TestCase.assertEquals;
 /**
  * Created by PeChen on 18/06/2018.
  */
-public final class PageFileParser implements PageData{
-    public static final String PAGE_LOCATION = new EnvironmentContext().getProperty("pageObjectFile");
+public final class PageFileParser {
+    private static final String PAGE_LOCATION = new EnvironmentContext().getProperty("pageObjectFile");
     private static Iterable<Object> pageObject = null;
     private static Map<String, Object> pageSelector = null;
 
@@ -31,7 +31,7 @@ public final class PageFileParser implements PageData{
     }
 
     private void initialize() {
-        InputStream input = null;
+        InputStream input;
         input = PageFileParser.class.getClassLoader().getResourceAsStream(PAGE_LOCATION);
         if (input != null) {
             pageObject = new Yaml().loadAll(input);
@@ -39,7 +39,6 @@ public final class PageFileParser implements PageData{
         else System.out.println("Could not find pageObject file.");
     }
 
-    @Override
     public Map<String, Object> loadPage(String pageName) {
         for (Object data : pageObject) {
             pageSelector = (Map<String, Object>) data;
@@ -52,11 +51,9 @@ public final class PageFileParser implements PageData{
         return null;
     }
 
-    @Override
     public String getElementSelector(String elementName) {
         try {
-            String selector = pageSelector.get(elementName).toString();
-            return selector;
+            return pageSelector.get(elementName).toString();
         }catch (NullPointerException e) {
             throw new IllegalStateException("can't find selector value for: " + elementName);
         }
