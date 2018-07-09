@@ -27,7 +27,7 @@ This framework is based on cucumber-java and selenium-java, try to let it more s
 
 # Functions
 ## Rerun Failed Scenarios
-If you just want the failed scenarios manually, Please execute this file: 
+If you just want to run the failed scenarios manually, Please execute this file: 
 ```cmd
 FeatureRerun.java
 ```
