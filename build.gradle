@@ -21,6 +21,7 @@ dependencies {
     testCompile group: 'org.yaml', name: 'snakeyaml', version: '1.21'
     testCompile group: 'commons-lang', name: 'commons-lang', version: '2.6'
     testCompile group: 'com.vimalselvam', name: 'cucumber-extentsreport', version: '1.1.1'
+    testCompile group: 'ru.yandex.qatools.ashot', name: 'ashot', version: '1.5.4'
 }
 
 task runFirstTime(type: Test) {

@@ -4,6 +4,8 @@
 .gradle/
 build/
 out/
+screenshotss/
+target/
 
 # Log file
 *.log

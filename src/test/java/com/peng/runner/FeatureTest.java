@@ -13,12 +13,12 @@ import java.io.File;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         glue = {"com.peng.steps"},
-        tags = {"@test"},
         plugin = {
                 "pretty",
                 "com.cucumber.listener.ExtentCucumberFormatter",
                 "rerun:target/rerun.txt"
-        }
+        },
+        tags = {"@test1"}
 )
 public class FeatureTest {
     @BeforeClass
@@ -28,3 +28,7 @@ public class FeatureTest {
         ExtentCucumberFormatter.initiateExtentCucumberFormatter(new File(reportPath),true);
     }
 }
+
+
+
+

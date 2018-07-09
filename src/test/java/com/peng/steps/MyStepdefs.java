@@ -1,5 +1,6 @@
 package com.peng.steps;
 
+import com.peng.functions.CommonOperations;
 import com.peng.functions.DriverFactory;
 import com.peng.functions.EnvironmentContext;
 import com.peng.functions.PageFileParser;
@@ -22,6 +23,7 @@ public class MyStepdefs {
     private WebDriver driver = new DriverFactory().getDriver();
     private EnvironmentContext environmentContext = new EnvironmentContext();
     private PageFileParser page = new PageFileParser();
+    private CommonOperations commonOperations = new CommonOperations();
 
     @When("^user inputs \"([^\"]*)\" in the field \"([^\"]*)\"$")
     public void userInputsInTheField(String keyword, String field) throws Throwable {
@@ -55,5 +57,15 @@ public class MyStepdefs {
     @After
     public void afterScenario (Scenario scenario) {
         new DriverFactory().destoryDriver();
+    }
+
+    @Then("^user take a screenshot$")
+    public void userTakeAScreenshot() throws Throwable {
+        commonOperations.takeScreenshot(driver);
+    }
+
+    @Then("^user capture this page as \"([^\"]*)\" and save to \"([^\"]*)\"$")
+    public void userCaptureThisPageAsAndSaveTo(String fileName, String filePath) throws Throwable {
+        commonOperations.takeScreenshot(driver, filePath, fileName);
     }
 }
