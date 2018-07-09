@@ -6,6 +6,7 @@ import com.peng.functions.EnvironmentContext;
 import com.peng.functions.PageFileParser;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -13,7 +14,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import java.util.Map;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -24,6 +25,12 @@ public class MyStepdefs {
     private EnvironmentContext environmentContext = new EnvironmentContext();
     private PageFileParser page = new PageFileParser();
     private CommonOperations commonOperations = new CommonOperations();
+    private Scenario myScenario;
+
+    @Before()
+    public void embedScreenshotStep(Scenario scenario) {
+        myScenario = scenario;
+    }
 
     @When("^user inputs \"([^\"]*)\" in the field \"([^\"]*)\"$")
     public void userInputsInTheField(String keyword, String field) throws Throwable {
@@ -56,12 +63,19 @@ public class MyStepdefs {
 
     @After
     public void afterScenario (Scenario scenario) {
+        if (scenario.isFailed()) {
+            try {
+                scenario.embed(commonOperations.takeScreenshot(driver),"image/png");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         new DriverFactory().destoryDriver();
     }
 
     @Then("^user take a screenshot$")
     public void userTakeAScreenshot() throws Throwable {
-        commonOperations.takeScreenshot(driver);
+        myScenario.embed(commonOperations.takeScreenshot(driver),"image/png");
     }
 
     @Then("^user capture this page as \"([^\"]*)\" and save to \"([^\"]*)\"$")

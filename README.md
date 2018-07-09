@@ -12,11 +12,12 @@ This framework is based on cucumber-java and selenium-java, try to let it more s
 4. Integrate with Cucumber-Extend reports
 5. Rerun failed scenarios
 6. Take full screenshots
+7. Take fail step screenshots and embed to report
 
 ## In Progress Feature List
 1. WaitUntil : before error happening, wait few seconds and keep retry.
-2. Take Full Screenshot whenever you want. --Done
-3. Take screenshot when error occur.
+2. Take Full Screenshot whenever you want. -- Done
+3. Take screenshot when error occur. -- Done
 4. Friendly test report.   -- Done.
 5. support cssSelector\xPath\id
 6. Parallel execute test.
@@ -50,6 +51,16 @@ ExtentCucumberFormatter.initiateExtentCucumberFormatter(new File(reportPath),tru
 
 ## Take Full ScreenShot
 This function is basing on AShot plugin. You can take a full screenshots whenever you want.
+
+Using this cmd then it will capture current screen and embed to report:
+```cucumber
+Then user take a screenshot
+```
+
+Using following cmd then you capture current screen and save to somewhere:
+```cucumber
+Then user capture this page as "screenshotName" and save to "Path"
+```
 
 
 # Notice

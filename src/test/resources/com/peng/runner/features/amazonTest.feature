@@ -22,6 +22,7 @@ Feature: Sign up an Amazon account
       | name      | email             | password  | re-password |
       | peng chen1 | chenpeng1@test.com | password1 | password1 |
 
+  @test2
   Scenario: Sign up a new account - Failed
     When user click "Sign in" button
     Then user should land on "Sign in" page

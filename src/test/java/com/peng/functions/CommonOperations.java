@@ -7,14 +7,14 @@ import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CommonOperations {
-
-    public void takeScreenshot(WebDriver webDriver) throws IOException {
+    public byte[] takeScreenshot(WebDriver webDriver) throws IOException {
         int pixelRatio = 1;
         if (webDriver.toString().contains("MAC")) {
             pixelRatio = 2;
@@ -29,6 +29,11 @@ public class CommonOperations {
 
         ImageIO.write(image,"PNG",new File("target/cucumber-reports/"
                 + dateFormat.format(date) + ".png"));
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ImageIO.write(image,"png",outputStream);
+
+        return outputStream.toByteArray();
     }
 
     public void takeScreenshot(WebDriver webDriver, String path, String name) throws IOException {
